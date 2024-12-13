@@ -6,8 +6,10 @@ body {
 #main {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  min-width: 100vh;
+  justify-content: center; /* Ensure centered content */
+  margin-right: 0; /* Remove right margin */
+  padding: 0;
+  gap: 1rem; /* Optional spacing between cards */
 }
 
 .card {

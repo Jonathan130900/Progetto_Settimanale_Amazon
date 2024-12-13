@@ -49,7 +49,6 @@ addItemBtn.addEventListener("click", function (e) {
 const descriptionInput = document.getElementById("descriptionProduct");
 const maxChars = 500;
 
-// Show remaining characters
 descriptionInput.addEventListener("input", () => {
   if (descriptionInput.value.length > maxChars) {
     descriptionInput.value = descriptionInput.value.slice(0, maxChars);
@@ -83,11 +82,9 @@ const addProduct = async () => {
     const data = await response.json();
     console.log("Product added successfully!", data);
 
-    // Reset the form
     productForm.reset();
 
-    // Redirect to the index.html
-    window.location.href = "index.html"; // Redirect to index.html
+    window.location.href = "index.html";
   } catch (error) {
     console.error("Error adding new product:", error);
   }

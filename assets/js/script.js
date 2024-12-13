@@ -24,16 +24,18 @@ const getProducts = async () => {
 
     products.forEach((product) => {
       main.innerHTML += `
-          <div class="card m-3" style="width: 18rem;">
-            <img src="${product.imageUrl}" class="card-img-top my-2" alt="${product.brand} ${product.name}">
-            <div class="card-body">
-              <h5 class="card-title">${product.brand} ${product.name}</h5>
-              <h4 class="card-text text">€${product.price}</h4>
-               <p class="card-text text-truncate" style="max-height: 3rem; overflow: hidden;">${product.description}</p>
+        <div class="card m-3" style="width: 18rem; max-width: 18rem; overflow: hidden;">
+          <img src="${product.imageUrl}" class="card-img-top my-2 px-2" style="width: 100%; object-fit: cover;" alt="${product.brand} ${product.name}">
+          <div class="card-body d-flex flex-column align-items-center">
+            <h5 class="card-title text-center">${product.brand} ${product.name}</h5>
+            <h4 class="card-text text-center">€${product.price}</h4>
+            <p class="card-text text-center">${product.description}</p>
+            <div class="d-flex justify-content-between w-100">
               <a href="details.html?id=${product._id}" class="btn btn-primary">Details</a>
               <button class="btn btn-danger delete-btn" data-id="${product._id}">Delete</button>
             </div>
-          </div>`;
+          </div>
+        </div>`;
     });
 
     document.querySelectorAll(".delete-btn").forEach((button) => {
