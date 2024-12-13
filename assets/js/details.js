@@ -27,12 +27,12 @@ const getProductDetails = async () => {
 
     const main = document.querySelector("main");
     main.innerHTML = `
-      <div class="card mx-auto" style="width: 24rem;">
-        <img src="${product.imageUrl}" class="card-img-top" alt="${product.name}" />
-        <div class="card-body">
-          <h5 class="card-title">${product.brand} ${product.name}</h5>
-          <p class="card-text"><strong>Description:</strong> ${product.description}</p>
-          <p class="card-text"><strong>Price:</strong> €${product.price}</p>
+      <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center">
+        <img src="${product.imageUrl}" class="img-fluid me-4 mb-4 mb-lg-0" style="max-width: 300px; width: 100%; height: auto;" alt="${product.name}">
+        <div class="text-center text-lg-start">
+          <h3 class="mb-2">${product.brand} ${product.name}</h3>
+          <p class="mb-2 fs-4"><strong>Price:</strong> €${product.price}</p>
+          <p class="mb-4 fs-6"><strong>Description:</strong> ${product.description}</p>
           <a href="index.html" class="btn btn-primary">Back to Home</a>
         </div>
       </div>`;

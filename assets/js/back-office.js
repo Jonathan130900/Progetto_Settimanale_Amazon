@@ -46,6 +46,17 @@ addItemBtn.addEventListener("click", function (e) {
   addProduct();
 });
 
+const descriptionInput = document.getElementById("descriptionProduct");
+const maxChars = 500;
+
+// Show remaining characters
+descriptionInput.addEventListener("input", () => {
+  if (descriptionInput.value.length > maxChars) {
+    descriptionInput.value = descriptionInput.value.slice(0, maxChars);
+    alert("Description cannot exceed 500 characters.");
+  }
+});
+
 const addProduct = async () => {
   let newProduct = new Product(
     productName.value,
