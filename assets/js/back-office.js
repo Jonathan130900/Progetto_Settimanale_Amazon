@@ -59,7 +59,7 @@ const addProduct = async () => {
     let response = await fetch(URL_PRODUCT, {
       method: "POST",
       headers: {
-        Authorization: `bearer ${API_KEY}`,
+        Authorization: `Bearer ${API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newProduct),
@@ -72,11 +72,13 @@ const addProduct = async () => {
     const data = await response.json();
     console.log("Product added successfully!", data);
 
+    // Reset the form
     productForm.reset();
-    getProducts();
+
+    // Redirect to the index.html
+    window.location.href = "index.html"; // Redirect to index.html
   } catch (error) {
     console.error("Error adding new product:", error);
   }
 };
-
 getProducts();

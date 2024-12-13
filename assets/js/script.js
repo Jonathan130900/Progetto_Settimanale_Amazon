@@ -30,7 +30,7 @@ const getProducts = async () => {
               <h5 class="card-title">${product.brand} ${product.name}</h5>
               <p class="card-text">€${product.price}</p>
               <p class="card-text">${product.description}</p>
-              <a href="details.html" class="btn btn-primary">Details</a>
+              <a href="details.html?id=${product._id}" class="btn btn-primary">Details</a>
               <button class="btn btn-danger delete-btn" data-id="${product._id}">Delete</button>
             </div>
           </div>`;
