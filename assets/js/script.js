@@ -7,32 +7,61 @@ const getProducts = async () => {
     let response = await fetch(URL_PRODUCT, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${API_KEY}`, // Aggiungi il Bearer Token
-        "Content-Type": "application/json", // Specifica che ci aspettiamo una risposta in JSON
+        Authorization: `Bearer ${API_KEY}`,
+        "Content-Type": "application/json",
       },
     });
 
     if (!response.ok) {
-      throw new Error(`Errore nella risposta: ${response.status}`);
+      throw new Error(`Response error: ${response.status}`);
     }
 
     const products = await response.json();
-    console.log("Prodotti ottenuti:", products);
+    console.log("Products available:", products);
+
+    const main = document.getElementById("main");
+    main.innerHTML = "";
 
     products.forEach((product) => {
-      const main = document.getElementById("main");
-      main.innerHTML = `<div class="card" style="width: 18rem;">
-                              <img src="${product.imageUrl}" class="card-img-top" alt="${product.brand} ${product.name}">
-                              <div class="card-body">
-                                  <h5 class="card-title">${product.brand} ${product.name}</h5>
-                                  <p class="card-text">${product.price}</p>
-                                  <p class="card-text">${product.description}</p>
-                                  <a href="details.html" class="btn btn-primary">Details</a>
-                              </div>
-                          </div>`;
+      main.innerHTML += `
+          <div class="card" style="width: 18rem;">
+            <img src="${product.imageUrl}" class="card-img-top" alt="${product.brand} ${product.name}">
+            <div class="card-body">
+              <h5 class="card-title">${product.brand} ${product.name}</h5>
+              <p class="card-text">€${product.price}</p>
+              <p class="card-text">${product.description}</p>
+              <a href="details.html" class="btn btn-primary">Details</a>
+              <button class="btn btn-danger delete-btn" data-id="${product._id}">Delete</button>
+            </div>
+          </div>`;
+    });
+
+    document.querySelectorAll(".delete-btn").forEach((button) => {
+      button.addEventListener("click", async (e) => {
+        const productId = e.target.getAttribute("data-id");
+        try {
+          let deleteResponse = await fetch(`${URL_PRODUCT}${productId}`, {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${API_KEY}`,
+              "Content-Type": "application/json",
+            },
+          });
+
+          if (!deleteResponse.ok) {
+            throw new Error(`Error deleting product: ${deleteResponse.status}`);
+          }
+
+          e.target.closest(".card").remove();
+
+          console.log("Product deleted successfully.");
+        } catch (error) {
+          console.error("Error deleting product:", error);
+        }
+      });
     });
   } catch (error) {
-    console.error("Errore durante il recupero dei prodotti:", error);
+    console.error("Error fetching the products:", error);
   }
 };
 

@@ -1,0 +1,25 @@
+html,
+body {
+  margin: 0;
+}
+
+#main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  min-width: 100vh;
+}
+
+.card {
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.row {
+  width: 100%;
+}
+
+.card-columns {
+  column-count: 4;
+  column-gap: 20px;
+}
